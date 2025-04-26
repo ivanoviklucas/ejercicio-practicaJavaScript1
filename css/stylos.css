@@ -1,0 +1,108 @@
+body{display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.come-menos{
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 255, 0.6),
+          rgba(0, 255, 255, 0.4),
+          rgba(0, 0, 255, 0.6)
+        );
+        backdrop-filter: blur(10px) brightness(1.2);
+        height: 500px;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 30px;
+        box-shadow: 0 0 25px rgba(0, 0, 255, 0.5),
+                    inset 0 0 15px rgba(255, 255, 255, 0.2);
+        animation: float 6s ease-in-out infinite;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        margin-top: 30px;
+}
+
+form{
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+body form label {
+    background: linear-gradient(90deg, #00ffd5, #8e2de2);
+    color: #222; /* Texto oscuro */
+    width: 200px;
+    border-radius: 10px;
+    padding: 8px;
+    font-weight: bold;
+}
+
+body form input {
+    background: linear-gradient(90deg, #00ffd5, #8e2de2);
+    color: #222; /* Texto oscuro */
+    font-weight: 800;
+    width: 200px;
+    border-radius: 10px;
+    padding: 8px;
+    border: none;
+}
+
+body form input::placeholder {
+    color: #00ffd5; /* Color llamativo */
+    font-weight: bold;
+    text-shadow: 0 0 5px #8e2de2; /* Brillo suave */
+    letter-spacing: 1px; /* Letras un poquito separadas */
+    font-style: italic; /* Que se vea dinámico */
+    opacity: 1; /* Totalmente visible */
+}
+
+
+body section h1
+{
+        background: linear-gradient(90deg, #00ffd5, #8e2de2); /* Degradado moderno */
+        color: #ffffff; /* Blanco fuerte */
+        font-size: 36px;
+        padding: 10px 0;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Sombra fuerte */
+        margin-bottom: 30px;
+        font-weight: bold;
+        border: none; /* Sin borde redondeado */
+        font-family: "Comic Neue", cursive;
+  font-weight: 700;
+  font-style: normal;
+    }
+button{
+    display: flex
+;
+    flex-direction: column;
+   align-self: right;
+    margin-top: 20px;
+}
+
+P{ 
+        background: linear-gradient(135deg, #000000, #434343, #bfbfbf); /* Negro fuerte a platino claro */
+        color: #ffffff; /* Texto blanco puro */
+        width: 200px;
+        border-radius: 15px;
+        padding: 14px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Sombra más potente */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8); /* Sombra más profunda */
+        margin-top: 25px;
+        backdrop-filter: blur(3px);
+        font-size: 20px; /* Texto más grande para destacarlo */
+    align-self: flex-start;
+    margin-left: 5%;
+    font-family: "Comic Neue", cursive;}
+
+
+
+
