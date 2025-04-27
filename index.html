@@ -22,8 +22,11 @@
             <label>coloca tu peso </label>
             <input type="number" placeholder="coloque su peso aqui" id="peso"></input>
             <label>coloca tu altura</label>
-            <input type="number" placeholder="coloque su altura aqui" id="altura"></input>
+            <!-- El campo de altura solo puede ser modificado con las flechitas -->
+            <input type="number" id="altura" step="0.01" min="0" max="3" placeholder="Altura (0.00 - 3.00)" required>
+
             <button type="button" class="btn btn-dark" id="calcular">consultar</button>
+            <h1 id="imc"></h1>
         </form>
         <p id="resultado"></p>
     </section>
@@ -37,5 +40,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
     integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
     crossorigin="anonymous"></script>
-
+    <script src="javaScript/javaScript.js"></script>
 </html>
