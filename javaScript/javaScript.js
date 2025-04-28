@@ -3,27 +3,39 @@ document.addEventListener('DOMContentLoaded', function() {
   const alturaInput = document.getElementById('altura');
   const calcularBoton = document.getElementById('calcular');
 
-  // Limitar el input de peso a 2 dígitos enteros (sin decimales)
   pesoInput.addEventListener('input', function() {
     let valor = this.value;
-
-    // Eliminar todo lo que no sea un número
-    valor = valor.replace(/[^0-9]/g, '');
-
-    // Limitar la parte entera a 2 dígitos
-    if (valor.length > 2) {
-      valor = valor.slice(0, 2); // Solo permitir hasta 2 dígitos
+    valor = valor.replace(/[^0-9,.]/g, '');
+    valor = valor.replace(',', '.');
+    const partes = valor.split('.');
+    if (partes.length > 2) {
+      valor = partes[0] + '.' + partes[1];
     }
-
-    this.value = valor; // Asignar el valor modificado al campo de entrada
+    if (valor.indexOf('.') !== -1) {
+      const entero = valor.split('.')[0];
+      if (entero.length > 2) {
+        valor = entero.slice(0, 2) + '.' + valor.split('.')[1];
+      }
+    } else {
+      if (valor.length > 2) {
+        valor = valor.slice(0, 2);
+      }
+    }
+    this.value = valor;
   });
 
-  // Evitar que el usuario pueda escribir en el input de altura, solo cambiar con las flechas
-  alturaInput.addEventListener('keydown', function(e) {
-    // Solo permitir teclas de flechas, backspace, enter, etc. pero bloquear otras teclas
-    if (![37, 38, 39, 40, 8, 13].includes(e.keyCode)) {
-      e.preventDefault(); // Bloquea la escritura manual
+  alturaInput.addEventListener('input', function() {
+    let valor = this.value;
+    valor = valor.replace(/[^0-9,.]/g, '');
+    valor = valor.replace(',', '.');
+    const partes = valor.split('.');
+    if (partes.length > 2) {
+      valor = partes[0] + '.' + partes[1];
     }
+    if (valor.length > 4) {
+      valor = valor.slice(0, 4);
+    }
+    this.value = valor;
   });
 
   calcularBoton.addEventListener('click', function() {
@@ -51,3 +63,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+   
