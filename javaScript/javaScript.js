@@ -1,66 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const pesoInput = document.getElementById('peso');
-  const alturaInput = document.getElementById('altura');
-  const calcularBoton = document.getElementById('calcular');
+// Obtener los elementos del DOM
+const inputpeso = document.getElementById("peso");
+const inputaltura = document.getElementById("altura");
+const imcElemento = document.getElementById("imc");
+const calcularBtn = document.getElementById("calcular");
+const resultadoElemento = document.getElementById("resultado"); // importante
 
-  pesoInput.addEventListener('input', function() {
-    let valor = this.value;
-    valor = valor.replace(/[^0-9,.]/g, '');
-    valor = valor.replace(',', '.');
-    const partes = valor.split('.');
-    if (partes.length > 2) {
-      valor = partes[0] + '.' + partes[1];
-    }
-    if (valor.indexOf('.') !== -1) {
-      const entero = valor.split('.')[0];
-      if (entero.length > 2) {
-        valor = entero.slice(0, 2) + '.' + valor.split('.')[1];
-      }
-    } else {
-      if (valor.length > 2) {
-        valor = valor.slice(0, 2);
-      }
-    }
-    this.value = valor;
-  });
-
-  alturaInput.addEventListener('input', function() {
-    let valor = this.value;
-    valor = valor.replace(/[^0-9,.]/g, '');
-    valor = valor.replace(',', '.');
-    const partes = valor.split('.');
-    if (partes.length > 2) {
-      valor = partes[0] + '.' + partes[1];
-    }
-    if (valor.length > 4) {
-      valor = valor.slice(0, 4);
-    }
-    this.value = valor;
-  });
-
-  calcularBoton.addEventListener('click', function() {
-    const peso = parseFloat(pesoInput.value);
-    const altura = parseFloat(alturaInput.value);
-
-    if (!peso || !altura || altura <= 0 || peso <= 0) {
-      alert("Por favor ingresa valores válidos.");
-      return;
-    }
-
-    const imc = peso / (altura * altura);
-    document.getElementById('imc').innerText = `Tu IMC es ${imc.toFixed(2)}`;
-
-    const resultado = document.getElementById('resultado');
-
-    if (imc < 18.5) {
-      resultado.innerText = "bajo peso";
-    } else if (imc < 25) {
-      resultado.innerText = "peso normal";
-    } else if (imc < 30) {
-      resultado.innerText = "estas en sobrepeso";
-    } else {
-      resultado.innerText = "estas gordito vo' che";
-    }
-  });
+// Limitar el campo de peso a 2 dígitos y solo enteros
+inputpeso.addEventListener('input', function () {
+  inputpeso.value = inputpeso.value.replace(/\D/g, ''); // solo números
+  if (inputpeso.value.length > 3) {
+    inputpeso.value = inputpeso.value.slice(0, 2);
+  }
 });
-   
+
+// Limitar el campo de altura a 3 dígitos y solo enteros
+inputaltura.addEventListener('input', function () {
+  inputaltura.value = inputaltura.value.replace(/\D/g, ''); // solo números
+  if (inputaltura.value.length > 3) {
+    inputaltura.value = inputaltura.value.slice(0, 3);
+  }
+});
+
+// Función para calcular el IMC
+function calcularIMC() {
+  const peso = parseFloat(inputpeso.value);
+  const altura = parseFloat(inputaltura.value) / 100; // Convertir cm a metros
+
+  if (!isNaN(peso) && !isNaN(altura) && altura > 0) {
+    const imc = peso / (altura * altura);
+    imcElemento.textContent = `Tu IMC es: ${imc.toFixed(2)}`;
+
+    estado(imc); // 👈 AQUI la llamada correcta
+  } else {
+    imcElemento.textContent = "Por favor, ingresa valores válidos.";
+    resultadoElemento.textContent = ""; // Limpiar resultado
+  }
+}
+
+// Función para mostrar el estado según el IMC
+function estado(imc) {
+  if (imc < 18.5) {
+    resultadoElemento.textContent = "Bajo peso";
+  } else if (imc >= 18.5 && imc < 25){ resultadoElemento.textContent = "peso normal";
+  } else if (imc >= 25 && imc < 30){
+    resultadoElemento.textContent = "sobrepeso";
+  } else if (imc >= 30){
+    resultadoElemento.textContent = "estas gordito vo che"
+  }
+  
+}
+
+// Agregar el evento 'click' al botón
+calcularBtn.addEventListener("click", calcularIMC);
