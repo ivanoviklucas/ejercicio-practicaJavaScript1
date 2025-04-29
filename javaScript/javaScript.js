@@ -16,8 +16,8 @@ inputpeso.addEventListener('input', function () {
 // Validar rango de peso al perder el foco
 inputpeso.addEventListener('blur', function () {
   const peso = parseInt(inputpeso.value);
-  if (peso > 600 || peso < 100) {
-    alert("Por favor coloca un número entre 100 y 600 kg");
+  if (peso > 600 || peso < 40) {
+    alert("Por favor coloca un número entre 40 y 600 kg");
     inputpeso.value = "";
   }
 });
@@ -33,8 +33,8 @@ inputaltura.addEventListener('input', function () {
 // Validar altura al perder el foco
 inputaltura.addEventListener('blur', function () {
   const altura = parseInt(inputaltura.value);
-  if (altura > 272 || altura <= 100) {
-    alert("Por favor coloca un número entre 1 y 272 cm");
+  if (altura > 272 || altura < 100) {
+    alert("Por favor coloca un número entre 100 y 272 cm");
     inputaltura.value = "";
   }
 });
