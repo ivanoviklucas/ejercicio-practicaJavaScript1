@@ -5,17 +5,22 @@ const imcElemento = document.getElementById("imc");
 const calcularBtn = document.getElementById("calcular");
 const resultadoElemento = document.getElementById("resultado"); // importante
 
-// Limitar el campo de peso a 2 dígitos y solo enteros
+// Limitar el campo de peso a 3 dígitos y solo enteros
 inputpeso.addEventListener('input', function () {
   inputpeso.value = inputpeso.value.replace(/\D/g, ''); // solo números
   if (inputpeso.value.length > 3) {
-    inputpeso.value = inputpeso.value.slice(0, 2);
+    inputpeso.value = inputpeso.value.slice(0, 3);
   }
-  if(inputpeso.value > 600){
-    alert("por favor coloca un numero entre 0 y 600kg")
-  } 
 });
 
+// Validar rango de peso al perder el foco
+inputpeso.addEventListener('blur', function () {
+  const peso = parseInt(inputpeso.value);
+  if (peso > 600 || peso < 100) {
+    alert("Por favor coloca un número entre 100 y 600 kg");
+    inputpeso.value = "";
+  }
+});
 
 // Limitar el campo de altura a 3 dígitos y solo enteros
 inputaltura.addEventListener('input', function () {
@@ -23,10 +28,17 @@ inputaltura.addEventListener('input', function () {
   if (inputaltura.value.length > 3) {
     inputaltura.value = inputaltura.value.slice(0, 3);
   }
-  if(inputaltura.value > 272){
-    alert("por favor coloca un numero entre 0 y 272cm")
-  } 
-})
+});
+
+// Validar altura al perder el foco
+inputaltura.addEventListener('blur', function () {
+  const altura = parseInt(inputaltura.value);
+  if (altura > 272 || altura <= 100) {
+    alert("Por favor coloca un número entre 1 y 272 cm");
+    inputaltura.value = "";
+  }
+});
+
 // Función para calcular el IMC
 function calcularIMC() {
   const peso = parseFloat(inputpeso.value);
@@ -35,8 +47,7 @@ function calcularIMC() {
   if (!isNaN(peso) && !isNaN(altura) && altura > 0) {
     const imc = peso / (altura * altura);
     imcElemento.textContent = `Tu IMC es: ${imc.toFixed(2)}`;
-
-    estado(imc); // 👈 AQUI la llamada correcta
+    estado(imc);
   } else {
     imcElemento.textContent = "Por favor, ingresa valores válidos.";
     resultadoElemento.textContent = ""; // Limpiar resultado
@@ -47,13 +58,13 @@ function calcularIMC() {
 function estado(imc) {
   if (imc < 18.5) {
     resultadoElemento.textContent = "Bajo peso";
-  } else if (imc >= 18.5 && imc < 25){ resultadoElemento.textContent = "peso normal";
-  } else if (imc >= 25 && imc < 30){
-    resultadoElemento.textContent = "sobrepeso";
-  } else if (imc >= 30){
-    resultadoElemento.textContent = "estas gordito vo che"
+  } else if (imc >= 18.5 && imc < 25) {
+    resultadoElemento.textContent = "Peso normal";
+  } else if (imc >= 25 && imc < 30) {
+    resultadoElemento.textContent = "Sobrepeso";
+  } else {
+    resultadoElemento.textContent = "Obesidad";
   }
-  
 }
 
 // Agregar el evento 'click' al botón
