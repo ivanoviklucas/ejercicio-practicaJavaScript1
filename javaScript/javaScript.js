@@ -11,7 +11,11 @@ inputpeso.addEventListener('input', function () {
   if (inputpeso.value.length > 3) {
     inputpeso.value = inputpeso.value.slice(0, 2);
   }
+  if(inputpeso.value > 600){
+    alert("por favor coloca un numero entre 0 y 600kg")
+  } 
 });
+
 
 // Limitar el campo de altura a 3 dígitos y solo enteros
 inputaltura.addEventListener('input', function () {
@@ -19,8 +23,10 @@ inputaltura.addEventListener('input', function () {
   if (inputaltura.value.length > 3) {
     inputaltura.value = inputaltura.value.slice(0, 3);
   }
-});
-
+  if(inputaltura.value > 272){
+    alert("por favor coloca un numero entre 0 y 272cm")
+  } 
+})
 // Función para calcular el IMC
 function calcularIMC() {
   const peso = parseFloat(inputpeso.value);
@@ -52,3 +58,4 @@ function estado(imc) {
 
 // Agregar el evento 'click' al botón
 calcularBtn.addEventListener("click", calcularIMC);
+
